@@ -6,11 +6,18 @@ import 'dotenv/config';
 import express from 'express';
 import webhookRouter from './webhook.js';
 
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 const app = express();
 const PORT = process.env.PORT ?? 3000;
 
 // ── Middleware ───────────────────────────────────────────────────────────────
 app.use(express.json({ limit: '1mb' }));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Request logger
 app.use((req, _res, next) => {
@@ -25,8 +32,8 @@ app.get('/health', (_req, res) => {
   res.json({ status: 'ok', service: 'RouteIntegrity AI', timestamp: new Date().toISOString() });
 });
 
-// LLM Webhook
-app.use('/webhook', webhookRouter);
+// LLM Webhook / API
+app.use('/api', webhookRouter);
 
 // 404 handler
 app.use((_req, res) => {
