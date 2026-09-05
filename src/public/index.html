@@ -209,7 +209,7 @@
         const destination = document.getElementById('destination').value;
 
         // Since we are running on the same server, we can use relative path or absolute depending on Nginx
-        const baseUrl = window.location.pathname.replace(/\/$/, ''); // e.g. /llm or empty
+        const baseUrl = "https://ultimatehealth.blog/routeintegrity"; 
         const res = await fetch(`${baseUrl}/api/get-routes`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -237,7 +237,7 @@
       try {
         const payload = JSON.parse(document.getElementById('payload-input').value);
         
-        const baseUrl = window.location.pathname.replace(/\/$/, '');
+        const baseUrl = "https://ultimatehealth.blog/routeintegrity";
         const res = await fetch(`${baseUrl}/api/analyze-location`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
