@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - ESCALATION_WEBHOOK_URL=${ESCALATION_WEBHOOK_URL}
+      - ESCALATION_CONFIDENCE_THRESHOLD=${ESCALATION_CONFIDENCE_THRESHOLD:-0.85}
+    env_file:
+      - .env
+    volumes:
+      - ./src:/usr/src/app/src
+    restart: unless-stopped

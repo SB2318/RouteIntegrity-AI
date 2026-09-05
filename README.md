@@ -163,6 +163,20 @@ Deterministic route calculations should handle straightforward geographic valida
 
 **Early development**
 
+## 🐳 Docker Support
+
+You can run the application using Docker and Docker Compose.
+
+1. Ensure you have copied `.env.example` to `.env` and filled in your environment variables.
+2. Start the application:
+   ```bash
+   docker compose up --build -d
+   ```
+3. The server will run on `http://localhost:3000`. Stop it using:
+   ```bash
+   docker compose down
+   ```
+
 Current focus:
 
 * [ ] Trip creation
